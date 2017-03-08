@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+    - Base      : create
+    - Stacks    : circles
+    - 3d Sensor : kinect
+-->    
+<robot name="roomblock" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find roomblock_description)/urdf/roomba500.urdf.xacro"/>
+  <create/>
+</robot>
