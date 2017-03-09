@@ -1,0 +1,20 @@
+<launch>
+  <arg name="map_file" default="$(find roomblock_navigation)/map/living.yaml"/>
+  <arg name="launch_rviz" default="true"/>
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" output="screen"/>
+
+  <!-- fake_localization -->
+  <node name="fake_localization" pkg="fake_localization" type="fake_localization">
+    <remap from="base_pose_ground_truth" to="roomblock_controller/odom"/>
+  </node>
+
+  <!-- Move base -->
+  <include file="$(find roomblock_navigation)/launch/include/move_base.launch.xml"/>
+
+  <!-- Rviz -->
+  <node if="$(arg launch_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_navigation)/config/nav.rviz"/>
+
+
+</launch>

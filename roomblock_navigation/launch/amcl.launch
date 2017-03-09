@@ -1,0 +1,18 @@
+<launch>
+  <arg name="map_file" default="$(env ROOMBLOCK_MAP_FILE)"/>
+  <arg name="launch_rviz" default="true"/>
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- AMCL -->
+  <include file="$(find roomblock_navigation)/launch/include/laser_amcl.launch.xml"/>
+
+  <!-- Move base -->
+  <include file="$(find roomblock_navigation)/launch/include/move_base.launch.xml"/>
+
+  <!-- Rviz -->
+  <node if="$(arg launch_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_navigation)/config/nav.rviz"/>
+
+</launch>
+

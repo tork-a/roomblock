@@ -1,0 +1,6 @@
+image: living.pgm
+resolution: 0.05
+origin: [-4.05405626296997, -2.258573055267334, 0]
+occupied_thresh: 0.51
+free_thresh: 0.49
+negate: 0
