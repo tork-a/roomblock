@@ -49,8 +49,8 @@ DWAPlannerROS:
 # Debugging
   publish_traj_pc : true
   publish_cost_grid_pc: true
-  global_frame_id: odom
+#  global_frame_id: odom
 
 
 # Differential-drive robot configuration - necessary?
-#  holonomic_robot: false
+  holonomic_robot: false
