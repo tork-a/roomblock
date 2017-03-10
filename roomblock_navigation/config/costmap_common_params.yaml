@@ -2,10 +2,10 @@ robot_base_frame: base_link
 
 transform_tolerance: 0.5
 
-robot_radius: 0.30
+robot_radius: 0.18
 inflater:
-  robot_radius: 0.30
-  inflation_radius: 0.70
+  robot_radius: 0.18
+  inflation_radius: 0.20
 
 obstacles:
   observation_sources: base_scan
