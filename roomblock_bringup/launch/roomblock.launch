@@ -2,7 +2,7 @@
 
   <arg name="launch_rplidar" default="true" />
   <arg name="simulation" default="false" doc="set flags to indicate this turtle is run in simulation mode."/>
-  <arg name="serialport" default="/dev/ttyUSB1"/>
+  <arg name="serialport" default="/dev/roomba"/>
 
   <param name="/use_sim_time" value="$(arg simulation)"/>
 
@@ -40,6 +40,8 @@
   </node>
 
   <!-- RPLIDAR a2 -->
-  <include if="$(arg launch_rplidar)" file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <include if="$(arg launch_rplidar)" file="$(find rplidar_ros)/launch/rplidar.launch">
+    <arg name="serial_port" value="/dev/rplidar"/>
+  </include>
 
 </launch>
