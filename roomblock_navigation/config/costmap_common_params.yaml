@@ -1,0 +1,20 @@
+robot_base_frame: base_link
+
+transform_tolerance: 0.5
+
+robot_radius: 0.30
+inflater:
+  robot_radius: 0.30
+  inflation_radius: 0.70
+
+obstacles:
+  observation_sources: base_scan
+  base_scan:
+    data_type: LaserScan
+    topic: scan
+    marking: true
+    clearing: true
+    obstacle_range: 6.0
+    raytrace_range: 10.0
+    min_obstacle_height: -0.1
+    max_obstacle_height: 1.0

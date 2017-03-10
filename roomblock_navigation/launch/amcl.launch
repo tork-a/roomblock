@@ -1,5 +1,5 @@
 <launch>
-  <arg name="map_file" default="$(env ROOMBLOCK_MAP_FILE)"/>
+  <arg name="map_file" default="$(find roomblock_navigation)/map/living.yaml"/>
   <arg name="launch_rviz" default="true"/>
 
   <!-- Map server -->

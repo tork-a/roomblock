@@ -1,0 +1,12 @@
+global_frame: odom
+
+rolling_window: true
+publish_frequency: 2.0
+
+width: 4.0
+height: 4.0
+resolution: 0.025
+
+plugins:
+ - {name: obstacles,  type: "costmap_2d::VoxelLayer"}
+ - {name: inflater,   type: "costmap_2d::InflationLayer"}
