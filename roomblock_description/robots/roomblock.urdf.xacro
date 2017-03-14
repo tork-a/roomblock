@@ -7,4 +7,28 @@
 <robot name="roomblock" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find roomblock_description)/urdf/roomba500.urdf.xacro"/>
   <create/>
+  <material name="Grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+
+  <joint name="block_joint" type="fixed">
+    <origin xyz="0 0 0.061" rpy="0 0 0" />        
+    <parent link="base_link"/>
+    <child link="block_link" />
+  </joint>
+  <link name="block_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	<mesh filename="package://roomblock_description/meshes/block.dae"/>
+      </geometry>
+      <material name="Grey" />
+    </visual>
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <origin xyz="0 0 0.1308" rpy="0 0 ${M_PI}" />
+    <parent link="block_link" />
+    <child link="laser" />
+  </joint>
+  <link name="laser"/>
 </robot>

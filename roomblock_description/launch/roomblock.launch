@@ -1,0 +1,16 @@
+<launch>
+  <!-- Robot description file -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
+
+  <!-- Publish joint_state for display -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="TRUE"/>
+  </node>
+
+  <!-- Publish tf from joint_state -->
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher"/>
+
+  <!-- Show the robot in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_description)/launch/roomblock_description.rviz"/>
+
+</launch>
