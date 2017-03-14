@@ -1,0 +1,13 @@
+<launch>
+  <!-- Run Roomba interface (using create_node) -->
+  <node pkg="create_node" type="turtlebot_node.py" name="turtlebot_node" respawn="true" args="--respawnable">
+    <param name="port" value="/dev/roomba" />
+    <param name="robot_type" value="roomba" />
+    <param name="has_gyro" value="false" />
+    <param name="bonus" value="false" />
+    <param name="update_rate" value="30.0" />
+    <!-- <remap from="cmd_vel" to="mobile_base/commands/velocity" /> -->
+    <remap from="turtlebot_node/sensor_state" to="mobile_base/sensors/core" />
+  </node>
+
+</launch>

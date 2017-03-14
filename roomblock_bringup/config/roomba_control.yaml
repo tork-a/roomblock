@@ -2,7 +2,7 @@ joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 100
 
-roomblock_controller:
+roomba_controller:
     type        : "diff_drive_controller/DiffDriveController"
     left_wheel  : 'left_wheel_joint'
     right_wheel : 'right_wheel_joint'

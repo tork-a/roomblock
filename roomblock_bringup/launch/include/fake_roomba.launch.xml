@@ -1,0 +1,16 @@
+<launch>
+  <!-- Load controller configurations for Roomba -->
+  <rosparam command="load" file="$(find roomblock_bringup)/config/roomba_control.yaml"/>
+
+  <!-- Run fake_joint_driver for wheels -->
+  <node name="fake_joint_driver" pkg="fake_joint_driver" type="fake_joint_driver_node" output="screen">
+    <!-- Remap the topic to root position -->
+    <remap from="/roomba_controller/cmd_vel" to="/cmd_vel"/>
+    <remap from="/roomba_controller/odom" to="/odom"/>
+  </node>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="--shutdown-timeout 0.1 roomba_controller joint_state_controller"/>
+
+
+</launch>

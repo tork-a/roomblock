@@ -1,12 +1,14 @@
 <launch>
+  <!-- Set true to launch RPLIDAR node -->
+  <arg name="launch_rplidar" default="true"/>
 
-  <arg name="launch_rplidar" default="true" />
-  <arg name="simulation" default="false" doc="set flags to indicate this turtle is run in simulation mode."/>
-  <arg name="serialport" default="/dev/roomba"/>
+  <!-- Set true to launch rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_bringup)/launch/roomblock_bringup.rviz"/>
 
-  <param name="/use_sim_time" value="$(arg simulation)"/>
+  <!-- Set true to use fake_joint_driver and diff_drive_controller-->
+  <arg name="simulation" default="false"/>
 
-  <!-- Robot description -->
+  <!-- Load robot description -->
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
 
   <!-- Robot state publisher -->
@@ -14,20 +16,7 @@
     <param name="publish_frequency" type="double" value="5.0" />
   </node>
 
-  <!-- Roomba interface (using create_node) -->
-  <node unless="$(arg simulation)" pkg="create_node" type="turtlebot_node.py" name="turtlebot_node" respawn="true" args="--respawnable">
-    <param name="robot_type" value="roomba" />
-    <param name="has_gyro" value="false" />
-    <param name="bonus" value="false" />
-    <param name="update_rate" value="30.0" />
-    <param name="port" value="$(arg serialport)" />
-    <!-- <remap from="cmd_vel" to="mobile_base/commands/velocity" /> -->
-    <remap from="turtlebot_node/sensor_state" to="mobile_base/sensors/core" />
-    <remap from="imu/data" to="mobile_base/sensors/imu_data" />
-    <remap from="imu/raw" to="mobile_base/sensors/imu_data_raw" />
-  </node>
-
-  <!-- The odometry estimator -->
+  <!-- The odometry estimator
   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
     <remap from="imu_data" to="imu/data"/>
     <param name="freq" value="10.0"/>
@@ -38,14 +27,21 @@
     <param name="vo_used" value="false"/>
     <param name="output_frame" value="odom"/>
   </node>
+ -->
 
   <!-- RPLIDAR a2 -->
-  <node if="$(arg launch_rplidar)" name="rplidarNode" pkg="rplidar_ros" type="rplidarNode" output="screen">
+  <node if="$(arg launch_rplidar)" name="rplidarNode" pkg="rplidar_ros" type="rplidarNode">
     <param name="serial_port" type="string" value="/dev/rplidar"/>  
     <param name="serial_baudrate" type="int" value="115200"/>
     <param name="frame_id" type="string" value="laser"/>
     <param name="inverted" type="bool" value="false"/>
     <param name="angle_compensate" type="bool"   value="true"/>
   </node>
+
+  <!-- Run real robot interface -->
+  <include unless="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/real_roomba.launch.xml"/>
+
+  <!-- Run fake robot interface -->
+  <include if="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/fake_roomba.launch.xml"/>
 
 </launch>
