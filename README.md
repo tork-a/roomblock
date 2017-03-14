@@ -31,5 +31,5 @@ http://akizukidenshi.com/catalog/g/gM-05841/
 
 ### Frame
 
-3D printable data are available in (doc/stl)[doc/stl] directory.
+3D printable data are available in [doc/stl](doc/stl) directory.
 
