@@ -3,7 +3,7 @@
   <arg name="launch_rplidar" default="true"/>
 
   <!-- Set true to launch rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_bringup)/launch/roomblock_bringup.rviz"/>
+  <arg name="launch_rviz" default="false"/>
 
   <!-- Set true to use fake_joint_driver and diff_drive_controller-->
   <arg name="simulation" default="false"/>
@@ -43,5 +43,8 @@
 
   <!-- Run fake robot interface -->
   <include if="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/fake_roomba.launch.xml"/>
+
+  <!-- Run rviz -->
+  <node if="$(arg launch_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_bringup)/launch/roomblock_bringup.rviz"/>
 
 </launch>
