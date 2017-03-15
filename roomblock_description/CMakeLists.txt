@@ -171,7 +171,10 @@ include_directories(
 # )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
+install(DIRECTORY launch robots urdf meshes
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+# install(DIRECTORY launch robots/ urdf/ meshes/
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
