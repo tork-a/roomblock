@@ -1,0 +1,11 @@
+# Playstation 2 DualShock pad with a USB converter
+
+axis_linear: 1
+scale_linear: 0.3
+scale_linear_turbo: 1.0
+
+axis_angular: 2
+scale_angular: 1.0
+
+enable_button: 4  # L2 shoulder button
+enable_turbo_button: 6  # L1 shoulder button
