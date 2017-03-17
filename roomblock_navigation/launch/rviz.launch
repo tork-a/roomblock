@@ -1,0 +1,4 @@
+<launch>
+  <!-- Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_navigation)/launch/navigation.rviz"/>
+</launch>

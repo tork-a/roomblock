@@ -1,5 +1,5 @@
 <launch>
-  <arg name="map_file" default="$(find roomblock_navigation)/map/living.yaml"/>
+  <arg name="map_file" default="map.yaml"/>
   <arg name="launch_rviz" default="true"/>
 
   <!-- Map server -->
@@ -12,7 +12,7 @@
   <include file="$(find roomblock_navigation)/launch/include/move_base.launch.xml"/>
 
   <!-- Rviz -->
-  <node if="$(arg launch_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_navigation)/config/nav.rviz"/>
+  <include if="$(arg launch_rviz)" file="$(find roomblock_navigation)/launch/rviz.launch"/>
 
 </launch>
 
