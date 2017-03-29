@@ -1,6 +1,6 @@
 <!-- Launch file for teleoperation with Joypad -->
 <launch>
-  <arg name="joy_config" default="ps2usb" />
+  <arg name="joy_config" default="xbox" />
   <arg name="joy_dev" default="/dev/input/js0" />
   <arg name="config_filepath" default="$(find roomblock_bringup)/config/$(arg joy_config).config.yaml" />
   
