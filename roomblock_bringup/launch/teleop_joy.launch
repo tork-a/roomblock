@@ -3,6 +3,10 @@
   <arg name="joy_config" default="xbox" />
   <arg name="joy_dev" default="/dev/input/js0" />
   <arg name="config_filepath" default="$(find roomblock_bringup)/config/$(arg joy_config).config.yaml" />
+
+  <!-- Set true to launch rviz -->
+  <arg name="with_rviz" default="true"/>
+  <arg name="with_camera" default="true"/>
   
   <node pkg="joy" type="joy_node" name="joy_node">
     <param name="dev" value="$(arg joy_dev)" />
@@ -13,4 +17,13 @@
   <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
     <rosparam command="load" file="$(arg config_filepath)" />
   </node>
+
+
+  <node if="$(arg with_camera)" name="image_transport" pkg="image_transport" type="republish" args="compressed in:=/raspicam_node/image raw out:=/camera/image_raw"/>
+
+  <!-- Run rviz -->
+  <node if="$(arg with_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_bringup)/launch/roomblock_bringup.rviz">
+    <remap from="/raspicam_node/camera_info" to="/camera/camera_info"/>
+  </node>
+
 </launch>
