@@ -1,25 +1,19 @@
 <launch>
-  <arg name="use_bag" value="true"/>
+  <arg name="use_bag" default="false"/>
+  <arg name="launch_rviz" default="true"/>
 
   <!-- Specify the bag file -->
   <arg name="bag_file" default="$(find roomblock_mapping)/bags/2017-03-15-10-49-47.bag"/>
 
-  <!-- Use simulated timestamp of the bag file -->
-  <param name="use_sim_time" value="true"/>
-
-  <!-- Load robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
-
-  <!-- Publish tf from joint_state -->
-  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher"/>
-
-  <!-- Play rosbag -->
-  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg bag_file)"/>
+  <!-- Play the bag file and use simulated clock -->
+  <include if="$(arg use_bag)" file="$(find roomblock_mapping)/launch/include/play_bag_file.launch.xml">
+    <arg name="bag_file" value="$(arg bag_file)"/>
+  </include>
 
   <!-- Start slam_karto -->
-  <node name="slam_karto" pkg="slam_karto" type="slam_karto" output="screen" />
+  <node name="slam_karto" pkg="slam_karto" type="slam_karto"/>
 
-  <!-- Start rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_mapping)/launch/mapping.rviz"/>
+  <!-- Rviz -->
+  <include if="$(arg launch_rviz)" file="$(find roomblock_mapping)/launch/rviz.launch"/>
 
 </launch>

@@ -1,5 +1,5 @@
 <launch>
-  <arg name="use_bag" value="false"/>
+  <arg name="use_bag" default="false"/>
   <arg name="launch_rviz" default="true"/>
 
   <!-- Specify the bag file -->
