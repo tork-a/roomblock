@@ -31,4 +31,10 @@
     <child link="laser" />
   </joint>
   <link name="laser"/>
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0 0 0.1" rpy="0 0 0" />
+    <parent link="block_link" />
+    <child link="raspicam" />
+  </joint>
+  <link name="raspicam"/>
 </robot>
