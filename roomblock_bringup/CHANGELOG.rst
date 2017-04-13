@@ -2,8 +2,8 @@
 Changelog for package roomblock_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2017-04-13)
+------------------
 * Add remote operation setting for gmapping launch
 * Change operation mode from full to safe
 * cleanup package.xml/CMakeLists.txt, update run_depends with roslaunch_add_file_check

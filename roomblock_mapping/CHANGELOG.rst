@@ -2,8 +2,8 @@
 Changelog for package roomblock_mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2017-04-13)
+------------------
 * add map_server
 * Add remote operation setting for gmapping launch
 * cleanup package.xml/CMakeLists.txt, update run_depends with roslaunch_add_file_check

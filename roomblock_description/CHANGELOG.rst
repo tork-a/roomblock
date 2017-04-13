@@ -2,8 +2,8 @@
 Changelog for package roomblock_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2017-04-13)
+------------------
 * cleanup package.xml/CMakeLists.txt, update run_depends with roslaunch_add_file_check
 * Fix camera position
 * Add raspi camera module link
