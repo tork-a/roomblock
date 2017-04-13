@@ -4,8 +4,7 @@ Roomblock is a robot platform consists of a Roomba, a Raspberry Pi 2,
 a RPLIDAR A2 and a mobile battery. It is good for the learning of the
 ROS navigation system.
 
-![Overview of Roomblock system](doc/img/roomblock_1.jpg =300x300)
-![Overview of Roomblock system](doc/img/roomblock_2.jpg =300x300)
+<img src="doc/img/roomblock_1.jpg" alt="Overview of Roomblock system" width="320"><img src="doc/img/roomblock_2.jpg" alt="Overview of Roomblock system" width="320">
 
 ## Hardware
 
