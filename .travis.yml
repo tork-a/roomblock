@@ -1,0 +1,57 @@
+sudo: required
+dist: trusty
+language: generic
+env:
+  - ROS_REPOSITORY_PATH="http://packages.ros.org/ros-shadow-fixed/ubuntu" ROS_DISTRO=indigo   DISTRO=trusty
+  - ROS_REPOSITORY_PATH="http://packages.ros.org/ros/ubuntu"              ROS_DISTRO=indigo   DISTRO=trusty
+  - ROS_REPOSITORY_PATH="http://packages.ros.org/ros-shadow-fixed/ubuntu" ROS_DISTRO=kinetic  DISTRO=xenial
+  - ROS_REPOSITORY_PATH="http://packages.ros.org/ros/ubuntu"              ROS_DISTRO=kinetic  DISTRO=xenial
+# Install system dependencies, namely ROS.
+install:
+  # Define some config vars.
+  - export CI_SOURCE_PATH=$(pwd)
+  - export REPOSITORY_NAME=${PWD##*/}
+script:
+  - docker run --rm -t
+        -e DISTRO
+        -e ROS_DISTRO
+        -e ROS_REPOSITORY_PATH
+        -e REPOSITORY_NAME
+        -e TRAVIS_BRANCH
+        -v $(pwd):/root/$REPOSITORY_NAME ubuntu:$DISTRO
+        /bin/bash -c 'bash -s <<EOF
+    set -x
+    set -e
+    apt-get update -q
+    apt-get install -y -q wget lsb-release sudo
+    
+    echo "Install ROS"
+    echo deb $ROS_REPOSITORY_PATH $DISTRO main > /etc/apt/sources.list.d/ros-latest.list
+    wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+    sudo apt-get update -q || echo "Ignore error of apt-get update"
+    sudo apt-get install -y -q python-rosdep python-wstool python-catkin-tools ros-$ROS_DISTRO-rosbash
+    echo "Testing branch $TRAVIS_BRANCH of $REPOSITORY_NAME on $(lsb_release -a)"
+    
+    echo "Setup rosdep"
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    sudo rosdep init
+    rosdep update
+    
+    echo "Setup catkin WS"
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws/src
+    ln -s /root/$REPOSITORY_NAME .
+    ls -al
+    pwd
+    cd ~/catkin_ws
+    
+    echo "Install dependency packages"
+    rosdep install -q -y -r --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+    
+    echo "Compile"
+    catkin build --no-status
+    catkin run_tests
+    catkin_test_results --all build
+    exit 0
+    EOF'
+
