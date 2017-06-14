@@ -71,6 +71,8 @@ hardwares to us.
 Clone roomblock source code:
 
 ```
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
 $ git clone https://github.com/tork-a/roomblock.git
 $ cd ~/catkin_ws
 $ rosdep install --from-paths src --ignore-src -r -y
