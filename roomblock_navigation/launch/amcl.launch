@@ -1,6 +1,7 @@
 <launch>
   <arg name="map_file" default="map.yaml"/>
   <arg name="launch_rviz" default="true"/>
+  <arg name="with_camera" default="true"/>
 
   <!-- Map server -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
@@ -13,6 +14,9 @@
 
   <!-- Rviz -->
   <include if="$(arg launch_rviz)" file="$(find roomblock_navigation)/launch/rviz.launch"/>
+
+  <node if="$(arg with_camera)" name="image_transport" pkg="image_transport" type="republish" args="compressed in:=/raspicam_node/image raw out:=/camera/image_raw"/>
+
 
 </launch>
 
