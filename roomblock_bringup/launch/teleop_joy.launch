@@ -7,11 +7,12 @@
   <!-- Set true to launch rviz -->
   <arg name="with_rviz" default="true"/>
   <arg name="with_camera" default="true"/>
+  <arg name="with_clean" default="true"/>
   
   <node pkg="joy" type="joy_node" name="joy_node">
     <param name="dev" value="$(arg joy_dev)" />
     <param name="deadzone" value="0.05" />
-    <param name="autorepeat_rate" value="30" /> 
+    <param name="autorepeat_rate" value="10" />
   </node>
 
   <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
@@ -24,6 +25,12 @@
   <!-- Run rviz -->
   <node if="$(arg with_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find roomblock_bringup)/launch/roomblock_bringup.rviz">
     <remap from="/raspicam_node/camera_info" to="/camera/camera_info"/>
+  </node>
+
+  <!-- Run clean motor toggler -->
+  <node if="$(arg with_clean)" name="clean_motor_toggler" pkg="roomblock_bringup" type="clean_motor_toggler.py">
+    <param name="service_name" value="turtlebot_node/set_clean_motors"/>
+    <param name="clean_button_id" value="0"/>
   </node>
 
 </launch>
