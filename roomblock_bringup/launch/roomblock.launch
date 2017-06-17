@@ -12,7 +12,7 @@
   <arg name="simulation" default="false"/>
 
   <!-- Load robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
 
   <!-- Robot state publisher -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
