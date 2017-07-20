@@ -97,3 +97,29 @@ And you can use raspicam_node to use the camera on ROS:
 $ git clone https://github.com/UbiquityRobotics/raspicam_node.git
 $ catkin_make
 ```
+
+### Adjust clock both in Raspberry Pi and local PC
+
+Raspberry Pi has no RTC(Real Time Clock), so the system clock is
+always diverged from the correct time at each boot time. It causes
+annoying problems. For example, move_base produce tf timeout error as:
+
+```
+[ WARN] [1456505621.806228153]: Costmap2DROS transform timeout. Current time: 1499505621.8061, global_pose stamp: 1499404347.1919, tolerance: 10.0000
+```
+
+You need to adjust the clock of Raspberry Pi and your local PC.
+Do one-shot NTP(Network Time Protocol) adjustment as follows:
+
+```
+$ sudo ntpdate ntp.ubuntu.com
+```
+
+You can see the clock is adjusted by the message like:
+
+```
+20 Jul 11:37:19 ntpdate[9333]: adjust time server 91.189.91.157 offset 0.016635 sec
+```
+
+You can use 'ntpd' or 'chrony' to adjust the clock
+automatically. Please search by yourself how to do so.
