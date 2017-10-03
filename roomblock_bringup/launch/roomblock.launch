@@ -5,6 +5,9 @@
   <!-- Set true to launch camera node -->
   <arg name="launch_camera" default="true"/>
 
+  <!-- Set true to launch camera node -->
+  <arg name="launch_theta" default="false"/>
+
   <!-- Set true to launch rviz -->
   <arg name="launch_rviz" default="false"/>
 
@@ -64,5 +67,7 @@
 
   </node>
 
+  <!-- Run RICOH Theta S -->
+  <include if="$(arg launch_theta)" file="$(find roomblock_bringup)/launch/theta_libuvc_camera.launch"/>
 
 </launch>
