@@ -1,0 +1,14 @@
+<launch>
+  <arg name="device" default="/dev/video0"/>
+  <arg name="camera_name" value="theta" />
+  
+  <node name="gscam" pkg="gscam" type="gscam">
+    <param name="camera_name" value="theta"/>
+    <param name="camera_info_url" value=""/>
+    <remap from="camera/image_raw" to="$(arg camera_name)/image_raw" />
+    <!-- <param name="gscam_config" value="v4l2src device=$(arg device) ! image/jpeg,width=1280,height=720 ! jpegdec ! ffmpegcolorspace"/> -->
+    <param name="gscam_config" value="v4l2src device=$(arg device)"/>
+    <param name="frame_id" value="/theta_frame"/>
+    <param name="sync_sink" value="true"/>
+  </node>
+</launch>
