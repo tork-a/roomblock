@@ -68,6 +68,6 @@
   </node>
 
   <!-- Run RICOH Theta S -->
-  <include if="$(arg launch_theta)" file="$(find roomblock_bringup)/launch/theta_libuvc_camera.launch"/>
+  <include if="$(arg launch_theta)" file="$(find roomblock_bringup)/launch/uvc_camera.launch"/>
 
 </launch>
