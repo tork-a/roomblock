@@ -1,0 +1,17 @@
+<launch>
+  <arg name="device" default="/dev/video0"/>
+  <arg name="camera_name" default="theta"/>
+
+  <group ns="$(arg camera_name)">
+    <!-- nodelet manager for Theta's image processing -->
+    <node pkg="nodelet" type="nodelet" name="manager" args="manager"/>
+    <!-- Launch uvc_camera driver -->
+    <node name="uvc_camera" pkg="nodelet" type="nodelet" args="load uvc_camera/CameraNodelet manager">
+      <param name="device" value="$(arg device)"/>
+      <param name="width" value="1280"/>
+      <param name="height" value="720"/>
+      <param name="fps" value="14"/>
+      <param name="format" value="jpeg"/>
+    </node>
+  </group>
+</launch>
