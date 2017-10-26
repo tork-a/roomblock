@@ -16,6 +16,9 @@
       type="cartographer_node" args="-configuration_directory $(find roomblock_mapping)/config -configuration_basename roomblock.lua" output="screen">
   </node>
 
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+  
   <!-- Rviz -->
   <include if="$(arg launch_rviz)" file="$(find roomblock_mapping)/launch/rviz.launch"/>
 
