@@ -5,6 +5,9 @@
   <!-- Set true to launch camera node -->
   <arg name="launch_camera" default="true"/>
 
+  <!-- Set true to launch Ricoh Theta camera node -->
+  <arg name="launch_theta" default="true"/>
+
   <!-- Set true to launch rviz -->
   <arg name="launch_rviz" default="false"/>
 
@@ -59,10 +62,11 @@
     <param name="framerate" value="15"/>
     <param name="vFlip" value="true"/>
     <param name="hFlip" value="true"/>
-
     <param name="camera_frame_id" value="raspicam"/>
-
   </node>
 
-
+  <node if="$(arg launch_theta)"
+	name="theta_camera" pkg="libuvc_camera" type="camera_node">
+    <param name="jpeg_only_mode" value="true"/>
+  </node>
 </launch>
