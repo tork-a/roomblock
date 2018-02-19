@@ -8,6 +8,9 @@
   <!-- Set true to launch camera node -->
   <arg name="launch_theta" default="false"/>
 
+  <!-- Set true to use imu -->
+  <arg name="launch_imu" default="false"/>
+
   <!-- Set true to launch rviz -->
   <arg name="launch_rviz" default="false"/>
 
@@ -21,19 +24,6 @@
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="5.0" />
   </node>
-
-  <!-- The odometry estimator
-  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-    <remap from="imu_data" to="imu/data"/>
-    <param name="freq" value="10.0"/>
-    <param name="sensor_timeout" value="1.0"/>
-    <param name="publish_tf" value="true"/>
-    <param name="odom_used" value="true"/>
-    <param name="imu_used" value="true"/>
-    <param name="vo_used" value="false"/>
-    <param name="output_frame" value="odom"/>
-  </node>
- -->
 
   <!-- RPLIDAR a2 -->
   <node if="$(arg launch_rplidar)" name="rplidarNode" pkg="rplidar_ros" type="rplidarNode">
@@ -67,5 +57,12 @@
 
   <!-- Run RICOH Theta S -->
   <include if="$(arg launch_theta)" file="$(find roomblock_bringup)/launch/uvc_camera.launch"/>
+
+  <!-- Run ADIS16470 -->
+  <include if="$(arg launch_imu)" file="$(find adi_driver)/launch/adis16470.launch">
+    <arg name="device" value="/dev/ttyACM0"/>
+    <arg name="frame_id" value="imu_link"/>
+    <arg name="publish_tf" value="false"/>
+  </include>
 
 </launch>
