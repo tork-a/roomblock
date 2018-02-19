@@ -84,7 +84,7 @@ may see internal WiFi (wlan0) is recognized by `ifconfig` as:
 $ ifconfig -a
 ```
 
-####Important note
+#### Important note
 
 After install Ubuntu for Pi3, we strongly recommend to make the
 firmware packages not being upgraded. If you upgrade the firmware, it
@@ -108,8 +108,7 @@ hardwares to us.
 
 #### Roomblock package released
 
-The packages for roomblock are already released into Indigo and
-Kinetic. So you don't need to build them by yourself. Use `apt` to
+The packages for roomblock are already released into Kinetic. So you don't need to build them by yourself. Use `apt` to
 install.
 
 ```
