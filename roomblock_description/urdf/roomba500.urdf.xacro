@@ -260,13 +260,12 @@
       <axis xyz="0 1 0"/>
     </joint>
     
-    <joint name="gyro_joint" type="fixed">
-      <axis xyz="0 1 0" />
-      <origin xyz="0 0 0.04" rpy="0 0 0" />
-      <parent link="base_link"/>
-      <child link="gyro_link"/>
+    <joint name="imu_joint" type="fixed">
+      <origin xyz="0 0 0.025" rpy="0 0 0" />
+      <parent link="block_link"/>
+      <child link="imu_link"/>
     </joint>
-    <link name="gyro_link">
+    <link name="imu_link">
       <inertial>
 	<mass value="0.001" />
 	<origin xyz="0 0 0" rpy="0 0 0" />
