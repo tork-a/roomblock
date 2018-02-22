@@ -92,6 +92,8 @@ $ ifconfig -a
 
 Repeat, you need to edit config.txt as mentioned in the section "Booting the official Pi 2 image on the Pi 3", or it doen't boot up after apt upgrade.
 
+You should remove `cloud-init` package, because it may disable the network connection.
+
 In addition, we strongly recommend to make the
 firmware packages not being upgraded. If you upgrade the firmware, it
 can disable the internal WiFi module.
