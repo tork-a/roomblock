@@ -77,8 +77,12 @@ $ unxz ubuntu-16.04-preinstalled-server-armhf+raspi3.img.xz
 $ dd bs=4M if=ubuntu-16.04-preinstalled-server-armhf+raspi3.img of=<dev file of your SD card>
 ```
 
-The Ubuntu image for Pi3 is not official one, but it works anyway. You
-may see internal WiFi (wlan0) is recognized by `ifconfig` as:
+The Ubuntu image for Pi3 is not official one, but it works anyway. 
+
+You need to edit config.txt as mentioned in the section "Booting the official Pi 2 image on the Pi 3", or it doen't boot up after apt upgrade.
+
+
+You may see internal WiFi (wlan0) is recognized by `ifconfig` as:
 
 ```
 $ ifconfig -a
@@ -86,9 +90,11 @@ $ ifconfig -a
 
 #### Important note
 
-After install Ubuntu for Pi3, we strongly recommend to make the
+Repeat, you need to edit config.txt as mentioned in the section "Booting the official Pi 2 image on the Pi 3", or it doen't boot up after apt upgrade.
+
+In addition, we strongly recommend to make the
 firmware packages not being upgraded. If you upgrade the firmware, it
-can disable internal WiFi module.
+can disable the internal WiFi module.
 
 You can do it as:
 
