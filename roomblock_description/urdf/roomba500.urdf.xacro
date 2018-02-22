@@ -261,7 +261,7 @@
     </joint>
     
     <joint name="imu_joint" type="fixed">
-      <origin xyz="0 0 0.025" rpy="0 0 0" />
+      <origin xyz="0.03 0 0.025" rpy="0 ${M_PI} ${M_PI/2}" />
       <parent link="block_link"/>
       <child link="imu_link"/>
     </joint>
