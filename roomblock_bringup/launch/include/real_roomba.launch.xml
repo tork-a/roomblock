@@ -1,4 +1,7 @@
 <launch>
+  <!-- Set true to use IMU into pose_ekf -->
+  <arg name="publish_odom_tf" default="true"/>
+  
   <!-- Run Roomba interface (using create_node) -->
   <node pkg="create_node" type="turtlebot_node.py" name="turtlebot_node" respawn="true" args="--respawnable">
     <param name="port" value="/dev/roomba" />
@@ -13,7 +16,7 @@
   </node>
 
   <!-- The odometry estimator -->
-  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+  <node if="$(arg publish_odom_tf)" pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
     <param name="freq" value="10.0"/>
     <param name="sensor_timeout" value="1.0"/>
     <param name="publish_tf" value="true"/>

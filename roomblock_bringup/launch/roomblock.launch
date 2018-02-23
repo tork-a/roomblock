@@ -9,7 +9,10 @@
   <arg name="launch_theta" default="false"/>
 
   <!-- Set true to use imu -->
-  <arg name="launch_imu" default="false"/>
+  <arg name="launch_imu" default="true"/>
+
+  <!-- Set true to publish odom tf -->
+  <arg name="publish_odom_tf" default="true"/>
 
   <!-- Set true to launch rviz -->
   <arg name="launch_rviz" default="false"/>
@@ -35,7 +38,9 @@
   </node>
 
   <!-- Run real robot interface -->
-  <include unless="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/real_roomba.launch.xml"/>
+  <include unless="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/real_roomba.launch.xml">
+    <arg name="publish_odom_tf" value="$(arg publish_odom_tf)"/>
+  </include>
 
   <!-- Run fake robot interface -->
   <include if="$(arg simulation)" file="$(find roomblock_bringup)/launch/include/fake_roomba.launch.xml"/>
