@@ -25,6 +25,7 @@
   <run_depend>rplidar_ros</run_depend>
   <run_depend>rviz</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
+  <run_depend>adi_driver</run_depend>
 
   <test_depend>rostest</test_depend>
   <test_depend>roslaunch</test_depend>
