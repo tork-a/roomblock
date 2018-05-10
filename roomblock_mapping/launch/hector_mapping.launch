@@ -3,7 +3,7 @@
   <arg name="bag_file" default="/home/tajima/tmp/2017-03-15-10-49-47.bag"/>
 
   <!-- Load robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find roomblock_description)/robots/roomblock.urdf.xacro'" />
 
   <param name="use_sim_time" value="true"/>
 
